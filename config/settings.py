@@ -6,12 +6,15 @@ import os
 from pathlib import Path
 import dj_database_url
 from django.db.backends import postgresql
-BASE_DIR = Path(__file__).resolve().parent.parent
+from dotenv import load_dotenv
 
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 # ---------------------------------------------------------------- Core
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-only-insecure-key-change-me")
+SECRET_KEY = os.getenv("SECRET_KEY",)
 DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS","127.0.0.1,localhost").split(",")
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
