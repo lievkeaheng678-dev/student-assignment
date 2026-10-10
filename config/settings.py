@@ -5,6 +5,7 @@ Settings for Group 5: Administration & Identity Management
 import os
 from pathlib import Path
 import dj_database_url
+from django.db.backends import postgresql
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ---------------------------------------------------------------- Core
@@ -66,7 +67,7 @@ TEMPLATES = [
 ]
 
 # ---------------------------------------------------------------- Database (PostgreSQL)
-DATABASE_URL = os.environ.get("postgresql://identity_db_apfc_user:otYfbeW2KhRhjfgNooadPuEvq8mk2M4a@dpg-db3p00aj9qps738hdu4g-a/identity_db_apfc")
+DATABASE_URL = os.environ.get("DATA_URL", "postgresql://identity_db_apfc_user:otYfbeW2KhRhjfgNooadPuEvq8mk2M4a@dpg-db3p00aj9qps738hdu4g-a/identity_db_apfc")
 
 if not DATABASE_URL:
     raise RuntimeError("DATABASE_URL is missing")
